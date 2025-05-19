@@ -16,6 +16,7 @@ model User {
   name          String?
   email         String          @unique
   image         String?
+  password String
   accounts      Account[]
   sessions      Session[]
  
