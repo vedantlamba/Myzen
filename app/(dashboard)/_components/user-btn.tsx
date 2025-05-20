@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ClipLoader } from "react-spinners";
 import Link from "next/link";
 
-export const UserBtn = () => {
+export const UserBtn = ({ greeting }: { greeting?: string }) => {
   const { data: session, status } = useSession();
 
   return (
@@ -24,7 +24,8 @@ export const UserBtn = () => {
             )}
           </Link>
         ) : (
-          <span className="text-[13px] md:text-[15px] font-light truncate">
+          <span className="text-[13px] md:text-[15px] font-medium truncate">
+            {greeting}
             {session.user?.name}
           </span>
         )}

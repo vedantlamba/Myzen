@@ -19,8 +19,11 @@ export const MobileRoutes = () => {
           <TeacherBtn />
         </div>
 
-        <div className="flex items-center gap-x-2">
+        <div className="hidden md:flex">
           <UserBtn />
+        </div>
+
+        <div className="flex items-center gap-x-2">
           <Profile />
         </div>
       </SessionProvider>
