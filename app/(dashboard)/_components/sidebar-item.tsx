@@ -30,11 +30,11 @@ export const SidebarItem = ({ icon: Icon, href, label }: SidebarItemProps) => {
       type="button"
       variant="ghost"
       className={cn(
-        "text-sm md:text-lg flex items-center gap-x-2 pl-6 cursor-pointer rounded-none ",
+        "text-sm md:text-lg flex items-center gap-x-2 pl-6 py-6 cursor-pointer rounded-none ",
         isActive && "bg-accent"
       )}
     >
-      <div className="flex w-full items-center gap-x-2 py-4">
+      <div className={cn("flex w-full items-center gap-x-2 py-4 font-light",isActive && "font-medium")}>
         <Icon
           size={22}
         />
