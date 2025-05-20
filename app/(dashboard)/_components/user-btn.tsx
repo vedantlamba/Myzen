@@ -10,7 +10,7 @@ export const UserBtn = () => {
 
   return (
     <div>
-      <div className="flex justify-center items-center h-full md:px-3 text-center min-w-[150px] max-w-[250px] truncate">
+      <div className="flex justify-center items-center h-full px-3 text-center min-w-[150px] max-w-[250px] truncate">
         {!session ? (
           <Link href="/auth/login">
             {status === "loading" ? (
