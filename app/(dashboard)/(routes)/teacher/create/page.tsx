@@ -17,8 +17,6 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-
-
 const CreatePage = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -34,7 +32,7 @@ const CreatePage = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto h-full flex justify-center items-center">
+    <div className="max-w-5xl mx-auto h-full flex pt-56 md:pt-0  justify-center md:items-center overflow-y-hidden">
       <div>
         <h1 className="text-2xl md:text-3xl font-semibold text-[#1F1F1F] tracking-tight">
           What&apos;s Your Course Called?
