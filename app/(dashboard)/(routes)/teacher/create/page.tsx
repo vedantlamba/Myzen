@@ -16,6 +16,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { Cat } from "react-kawaii";
 
 const CreatePage = () => {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -32,7 +33,10 @@ const CreatePage = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto h-full flex pt-56 md:pt-0  justify-center md:items-center overflow-y-hidden">
+    <div className="max-w-5xl mx-auto h-full flex md:flex-row flex-col md:justify-center pt-44 md:pt-0 items-center overflow-y-auto">
+      <div className="hidden md:flex">
+        <Cat size={240} mood="blissful" color="#FFFFFF" />
+      </div>
       <div>
         <h1 className="text-2xl md:text-3xl font-semibold text-[#1F1F1F] tracking-tight">
           What&apos;s Your Course Called?
