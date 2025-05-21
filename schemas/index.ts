@@ -24,3 +24,12 @@ export const ResetPasswordSchema = z.object({
 export const ResetPasswordEmailSchema = z.object({
   password: z.string().min(3, "Password must be of 3 letters."),
 });
+
+
+// FORM
+
+export const formSchema = z.object({
+  title: z.string().min(1, {
+    message: "Course name is required!",
+  }),
+});
