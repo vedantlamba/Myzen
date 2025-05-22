@@ -1,5 +1,10 @@
 "use client";
-import { Button } from "@/components/ui/button";
+
+import * as z from "zod";
+import axios from "axios";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import {
   Form,
   FormControl,
@@ -9,16 +14,15 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { formSchema } from "@/schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
-import { Cat } from "react-kawaii";
-
+import { Button } from "@/components/ui/button";
+import {
+  errorToast,
+  SuccessToaster,
+} from "@/components/providers/toast-providers";
+import { formSchema } from "@/schemas";
 const CreatePage = () => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -28,16 +32,20 @@ const CreatePage = () => {
 
   const { isSubmitting, isValid } = form.formState;
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      const res = await axios.post("/api/courses", values);
+      router.push(`/teacher/courses/${res.data.id}`);
+      SuccessToaster();
+    } catch {
+      // console.log("Something went wrong!");
+      errorToast();
+    }
   };
 
   return (
-    <div className="max-w-5xl mx-auto h-full flex md:flex-row flex-col md:justify-center pt-44 md:pt-0 items-center overflow-y-auto">
-      <div className="hidden md:flex">
-        <Cat size={240} mood="blissful" color="#FFFFFF" />
-      </div>
-      <div>
+    <div className="max-w-5xl mx-auto flex justify-center items-center h-full p-6">
+      <div className="md:text-center space-y-2">
         <h1 className="text-2xl md:text-3xl font-semibold text-[#1F1F1F] tracking-tight">
           What&apos;s Your Course Called?
         </h1>
@@ -47,7 +55,7 @@ const CreatePage = () => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-8 mt-8"
+            className="space-y-8 mt-10"
           >
             <FormField
               control={form.control}
