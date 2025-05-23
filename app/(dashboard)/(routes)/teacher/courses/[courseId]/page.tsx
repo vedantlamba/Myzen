@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import { CircleDollarSign, LayoutDashboard, MonitorPlay } from "lucide-react";
 import { redirect } from "next/navigation";
 import { TitleForm } from "./_components/titile-form";
+import { DescriptionForm } from "./_components/description-form";
 
 const CourseIdPage = async ({
   params,
@@ -76,7 +77,7 @@ const CourseIdPage = async ({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
               <div className="flex flex-col gap-4 ">
                 <TitleForm initialData={course} courseId={course.id} />
-                {/* <DescriptionForm initialData={course} courseId={course.id} /> */}
+                <DescriptionForm initialData={course} courseId={course.id} />
                 {/* <CategoryForm
                   initialData={course}
                   courseId={course.id}
