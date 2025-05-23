@@ -33,3 +33,12 @@ export const formSchema = z.object({
     message: "Course name is required!",
   }),
 });
+
+
+// Course Forms
+
+export const titleformSchema = z.object({
+  title: z.string().min(2, {
+    message: "Title is required!",
+  }),
+});
