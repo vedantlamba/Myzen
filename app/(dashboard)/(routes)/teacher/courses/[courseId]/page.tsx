@@ -7,6 +7,7 @@ import { TitleForm } from "./_components/titile-form";
 import { DescriptionForm } from "./_components/description-form";
 import { ImageForm } from "./_components/image-form";
 import { CategoryForm } from "./_components/category-form";
+import { PriceForm } from "./_components/price-form";
 
 const CourseIdPage = async ({
   params,
@@ -78,7 +79,7 @@ const CourseIdPage = async ({
         </div>
         <div className="flex flex-col justify-center items-start lg:flex-row gap-6 mt-6">
           <div className="flex-1 w-full flex flex-col space-x-6 max-w-7xl">
-            <div className="flex items-center text-start md:justify-start gap-x-2">
+            <div className="flex items-center text-start md:justify-start">
               <IconBadge icon={LayoutDashboard} />
               <h1 className="text-lg font-medium">Customize your course</h1>
             </div>
@@ -109,13 +110,13 @@ const CourseIdPage = async ({
                 <IconBadge icon={CircleDollarSign} />
                 <h2 className="text-lg font-medium">Sell Your Course</h2>
               </div>
-              {/* <PriceForm initialData={course} courseId={course.id} /> */}
+              <PriceForm initialData={course} courseId={course.id} />
             </div>
           </div>
           <div></div>
         </div>
-        <div className=" max-w-7xl">
-          <div className="flex items-center gap-x-2 md:pt-4">
+        <div className="space-y-6 max-w-7xl">
+          <div className="flex items-center gap-x-2 md:pt-6">
             <IconBadge icon={MonitorPlay} />
             <h2 className="text-lg font-medium">Course Chapters</h2>
           </div>

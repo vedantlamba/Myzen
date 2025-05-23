@@ -14,17 +14,14 @@ import { Course } from "@prisma/client";
 import Image from "next/image";
 import { FileUpload } from "@/components/file-upload";
 import { errorToast,SuccessToaster } from "@/components/providers/toast-providers";
+import { imageFormSchema } from "@/schemas";
 
 interface ImageFormProps {
   initialData: Course;
   courseId: string;
 }
 
-const formSchema = z.object({
-  imageUrl: z.string().min(2, {
-    message: "Image is required!",
-  }),
-});
+
 
 export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
   const router = useRouter();
@@ -32,8 +29,8 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
 
   const toggleEdit = () => setIsEditing((current) => !current);
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof imageFormSchema>>({
+    resolver: zodResolver(imageFormSchema),
     defaultValues: {
       imageUrl: initialData?.imageUrl ?? "",
     },
@@ -41,7 +38,7 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
 
   const { isSubmitting} = form.formState;
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof imageFormSchema>) => {
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
       SuccessToaster({ message: "Course Updated Successfully!" });

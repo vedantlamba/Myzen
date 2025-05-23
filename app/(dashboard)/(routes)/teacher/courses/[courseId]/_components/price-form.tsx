@@ -17,38 +17,36 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Course } from "@prisma/client";
-import { Combobox } from "@/components/ui/combobox";
-import { errorToast,SuccessToaster } from "@/components/providers/toast-providers";
-import { catFormSchema } from "@/schemas";
+import { Input } from "@/components/ui/input";
+import {
+  errorToast,
+  SuccessToaster,
+} from "@/components/providers/toast-providers";
+import { priceFormSchema } from "@/schemas";
+import { formatPrice } from "@/lib/format";
 
-interface CategoryFormProps {
+interface PriceFormProps {
   initialData: Course;
   courseId: string;
-  options: { label: string; value: string }[];
 }
 
 
-
-export const CategoryForm = ({
-  initialData,
-  courseId,
-  options,
-}: CategoryFormProps) => {
+export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => setIsEditing((current) => !current);
 
-  const form = useForm<z.infer<typeof catFormSchema>>({
-    resolver: zodResolver(catFormSchema),
+  const form = useForm<z.infer<typeof priceFormSchema>>({
+    resolver: zodResolver(priceFormSchema),
     defaultValues: {
-      categoryId: initialData.categoryId ?? "",
+      price: initialData.price ?? 0,
     },
   });
 
   const { isSubmitting, isValid } = form.formState;
 
-  const onSubmit = async (values: z.infer<typeof catFormSchema>) => {
+  const onSubmit = async (values: z.infer<typeof priceFormSchema>) => {
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
       SuccessToaster({ message: "Course Updated Successfully!" });
@@ -59,14 +57,10 @@ export const CategoryForm = ({
     }
   };
 
-  const selectedOption = options.find(
-    (option) => option.value === initialData.categoryId
-  );
-
   return (
     <div className="mt-6 border bg-accent rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Course Category
+        Course Price
         <Button
           variant={"ghost"}
           size="icon"
@@ -90,11 +84,11 @@ export const CategoryForm = ({
       {!isEditing && (
         <p
           className={cn(
-            "text-sm mt-2",
-            !initialData.categoryId && "text-neutral-500 italic"
+            "text-sm mt-2 font-light",
+            !initialData.price && "text-neutral-500 italic"
           )}
         >
-          {selectedOption?.label || "No Category"}
+          {initialData.price ? formatPrice(initialData.price) : "No Price"}
         </p>
       )}
       {isEditing && (
@@ -105,11 +99,17 @@ export const CategoryForm = ({
           >
             <FormField
               control={form.control}
-              name="categoryId"
+              name="price"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Combobox options={options} {...field} />
+                    <Input
+                      disabled={isSubmitting}
+                      type="number"
+                      step="0.01"
+                      placeholder="Set a price for your course."
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

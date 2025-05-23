@@ -48,3 +48,20 @@ export const desFormSchema = z.object({
     message: "Description is required!",
   }),
 });
+
+export const imageFormSchema = z.object({
+  imageUrl: z.string().min(2, {
+    message: "Image is required!",
+  }),
+});
+
+export const catFormSchema = z.object({
+  categoryId: z.string().min(1, {
+    message: "Category is required!",
+  }),
+});
+
+
+export const priceFormSchema = z.object({
+  price: z.coerce.number(),
+});
