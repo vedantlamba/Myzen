@@ -5,6 +5,7 @@ import { CircleDollarSign, LayoutDashboard, MonitorPlay } from "lucide-react";
 import { redirect } from "next/navigation";
 import { TitleForm } from "./_components/titile-form";
 import { DescriptionForm } from "./_components/description-form";
+import { ImageForm } from "./_components/image-form";
 
 const CourseIdPage = async ({
   params,
@@ -43,7 +44,7 @@ const CourseIdPage = async ({
 
   return (
     <div>
-      <div className="p-6 w-full border h-full overflow-auto">
+      <div className="p-6 w-full border h-full">
         <div className="flex items-center justify-between">
           <div className="flex flex-col gap-y-2">
             <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
@@ -88,7 +89,7 @@ const CourseIdPage = async ({
                 /> */}
               </div>
               <div className="flex flex-col gap-4 h-full">
-                {/* <ImageForm initialData={course} courseId={course.id} /> */}
+                <ImageForm initialData={course} courseId={course.id} />
               </div>
             </div>
           </div>
