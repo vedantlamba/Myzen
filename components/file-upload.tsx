@@ -49,7 +49,7 @@ export const FileUpload = ({
         ),
         button: twMerge(
           appearance?.button,
-          "mt-2 bg-black hover:bg-stone-300 px-4 py-1.5 rounded-md text-sm font-semibold"
+          "mt-2 bg-black px-4 py-1.5 rounded-md text-sm font-semibold cursor-pointer"
         ),
         container: appearance?.container,
       }}
