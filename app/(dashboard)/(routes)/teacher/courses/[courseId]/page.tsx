@@ -1,7 +1,7 @@
 import { auth } from "@/auth";
 import { IconBadge } from "@/components/icon-badge";
 import { db } from "@/lib/db";
-import { CircleDollarSign, File, LayoutDashboard, MonitorPlay } from "lucide-react";
+import { CircleDollarSign, LayoutDashboard, MonitorPlay } from "lucide-react";
 import { redirect } from "next/navigation";
 import { TitleForm } from "./_components/titile-form";
 

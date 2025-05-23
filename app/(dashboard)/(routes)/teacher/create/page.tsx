@@ -21,7 +21,9 @@ import {
   SuccessToaster,
 } from "@/components/providers/toast-providers";
 import { formSchema } from "@/schemas";
+import { useState } from "react";
 const CreatePage = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -34,12 +36,14 @@ const CreatePage = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
+      setIsLoading(true);
       const res = await axios.post("/api/courses", values);
-      router.push(`/teacher/courses/${res.data.id}`);
       SuccessToaster();
+      router.push(`/teacher/courses/${res.data.id}`);
     } catch {
       // console.log("Something went wrong!");
       errorToast();
+      setIsLoading(false);
     }
   };
 
@@ -65,7 +69,7 @@ const CreatePage = () => {
                   <FormLabel>Course Title</FormLabel>
                   <FormControl>
                     <Input
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || isLoading}
                       placeholder="e.g. 'Machine Learning Made Simple'"
                       {...field}
                     />
@@ -76,12 +80,16 @@ const CreatePage = () => {
             />
             <div className="flex items-center gap-x-3">
               <Link href="/">
-                <Button className="cursor-pointer" type="button">
+                <Button
+                  className="cursor-pointer"
+                  type="button"
+                  disabled={isSubmitting || isLoading}
+                >
                   Cancel
                 </Button>
               </Link>
               <Button
-                disabled={!isValid || isSubmitting}
+                disabled={!isValid || isSubmitting || isLoading}
                 type="submit"
                 className="cursor-pointer"
               >
