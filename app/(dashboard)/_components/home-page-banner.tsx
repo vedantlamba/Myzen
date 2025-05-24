@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import {
   Carousel,
   CarouselContent,
@@ -6,6 +7,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Image from "next/image";
+import Link from "next/link";
 
 export const HomePageBanner = () => {
   return (
@@ -57,19 +59,24 @@ export const HomePageBanner = () => {
           </div>
         </Carousel>
       </div>
-      <div className="flex-1 bg-black py-5 px-5 md:px-0 md:py-0">
-        <div className="flex flex-col gap-y-2 max-w-2xl h-full justify-center mx-auto ">
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-white">
+      <div className="flex-1 bg-black pt-5 pb-11 px-5 md:px-0 md:py-0">
+        <div className="flex flex-col gap-y-2 max-w-2xl h-full justify-center mx-auto p-3">
+          <h1 className="text-2xl md:text-xl lg:text-3xl font-bold tracking-tight text-white">
             Welcome to Myzen
           </h1>
-          <span className="text-sm text-start md:text-base text-neutral-200">
+          <span className="text-sm text-start md:text-sm lg:text-base text-neutral-200 font-light">
             Learn. Create. Master. Your journey through knowledge begins here.
           </span>
 
           {/* Optional status message or note */}
-          <p className="text-neutral-300 text-[10px] md:text-sm ">
+          <p className="text-neutral-300 text-[10px] md:text-xs lg:text-sm ">
             Explore our curated courses and start learning at your own pace.
           </p>
+          <div className="flex items-end justify-end md:justify-start pt-2 md:pt-1">
+            <Link href="/search">
+              <Button variant="browse" className="cursor-pointer px-8">Browse</Button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
