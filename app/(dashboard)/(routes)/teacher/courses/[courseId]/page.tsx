@@ -1,13 +1,19 @@
 import { auth } from "@/auth";
 import { IconBadge } from "@/components/icon-badge";
 import { db } from "@/lib/db";
-import { CircleDollarSign, LayoutDashboard, MonitorPlay } from "lucide-react";
+import {
+  BookOpenCheck,
+  CircleDollarSign,
+  LayoutDashboard,
+  MonitorPlay,
+} from "lucide-react";
 import { redirect } from "next/navigation";
 import { TitleForm } from "./_components/titile-form";
 import { DescriptionForm } from "./_components/description-form";
 import { ImageForm } from "./_components/image-form";
 import { CategoryForm } from "./_components/category-form";
 import { PriceForm } from "./_components/price-form";
+import { ChaptersForm } from "./_components/chapters-form";
 
 const CourseIdPage = async ({
   params,
@@ -24,6 +30,19 @@ const CourseIdPage = async ({
   const course = await db.course.findUnique({
     where: {
       id: courseId,
+      userId
+    },
+    include: {
+      chapters: {
+        orderBy: {
+          position: "asc",
+        },
+        // attachments: {
+        //   orderBy: {
+        //     createdBy: "desc"
+        //   }
+        // }
+      },
     },
   });
 
@@ -32,8 +51,6 @@ const CourseIdPage = async ({
       name: "asc",
     },
   });
-
-
 
   if (!course) {
     return redirect("/");
@@ -44,7 +61,7 @@ const CourseIdPage = async ({
     course.imageUrl,
     course.price,
     course.categoryId,
-    // course.chapters.some((chapter) => chapter.isPublished),
+    course.chapters.some((chapter) => chapter.isPublished),
   ];
 
   const totalFields = requiredFields.length;
@@ -54,7 +71,7 @@ const CourseIdPage = async ({
 
   return (
     <div>
-      <div className="p-6 w-full border h-full">
+      <div className="p-6 w-full h-full">
         <div className="flex items-center justify-between">
           <div className="flex flex-col gap-y-2">
             <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
@@ -89,14 +106,6 @@ const CourseIdPage = async ({
               <div className="flex flex-col gap-4 ">
                 <TitleForm initialData={course} courseId={course.id} />
                 <DescriptionForm initialData={course} courseId={course.id} />
-                <CategoryForm
-                  initialData={course}
-                  courseId={course.id}
-                  options={categories.map((category) => ({
-                    label: category.name,
-                    value: category.id,
-                  }))}
-                />
               </div>
               <div className="flex flex-col gap-4 h-full">
                 <ImageForm initialData={course} courseId={course.id} />
@@ -112,6 +121,20 @@ const CourseIdPage = async ({
               </div>
               <PriceForm initialData={course} courseId={course.id} />
             </div>
+            <div>
+              <div className="flex items-center gap-x-2">
+                <IconBadge icon={BookOpenCheck} />
+                <h2 className="text-lg font-medium">Course Category</h2>
+              </div>
+              <CategoryForm
+                initialData={course}
+                courseId={course.id}
+                options={categories.map((category) => ({
+                  label: category.name,
+                  value: category.id,
+                }))}
+              />
+            </div>
           </div>
           <div></div>
         </div>
@@ -120,7 +143,7 @@ const CourseIdPage = async ({
             <IconBadge icon={MonitorPlay} />
             <h2 className="text-lg font-medium">Course Chapters</h2>
           </div>
-          {/* <ChaptersForm initialData={course} courseId={course.id} /> */}
+          <ChaptersForm initialData={course} courseId={course.id} />
         </div>
       </div>
     </div>

@@ -73,6 +73,7 @@ model Course {
   chapters    Chapter[]
   price Float?
   isPublished Boolean @default(false)
+  purchases Purchase[]
   categoryId String?
   category Category? @relation(fields: [categoryId],references: [id],onDelete: Cascade)
   createdAt DateTime @default(now())
@@ -88,8 +89,15 @@ model Category {
 
 
 model Chapter {
-   id          String       @id @default(uuid())
+  id          String       @id @default(uuid())
   title       String
+  description String? @db.Text
+  videoUrl String? @db.Text
+  position Int
+  isPublished Boolean @default(false)
+  isFree Boolean @default(false)
+  muxData MuxData?
+  userProgress UserProgress[]
   courseId    String
   course      Course       @relation(fields: [courseId], references: [id], onDelete: Cascade)
   attachments Attachment[] 
@@ -99,7 +107,7 @@ model Chapter {
 }
 
 model Attachment {
-id          String     @id @default(uuid())
+  id          String     @id @default(uuid())
   name        String
   url         String     @db.Text
   chapterId   String
@@ -110,6 +118,41 @@ id          String     @id @default(uuid())
 }
 
 
+model MuxData {
+  id String @id @default(uuid())
+  assetId String
+  playbackId String?
+  chapterId String @unique
+  chapter Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+}
+
+model UserProgress {
+  id String @id @default(uuid())
+  userId String
+  chapterId String
+  chapter Chapter @relation(fields: [chapterId],references: [id],onDelete: Cascade)
+  isCompleted Boolean @default(false)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  @@index([chapterId])
+  @@unique([chapterId,userId])
+}
 
 
+model Purchase {
+  id String @id @default(uuid())
+  userId String
+  courseId String
+  course Course @relation(fields: [courseId],references: [id],onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([courseId])
+}
 
+model StripeCustomer {
+  id String @id @default(uuid())
+  userId String @unique
+  stripeCustomerId String @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
