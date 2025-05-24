@@ -89,7 +89,7 @@ export const ChapterList = ({
                     >
                       <Grip className="w-5 h-5" />
                     </div>
-                    {chapter.title}
+                    <div className="truncate">{chapter.title}</div>
                     <div className="ml-auto pr-2 flex items-center gap-x-2">
                       {chapter.isFree && <Badge>Free</Badge>}
                       <Badge className={cn("bg-neutral-400")}>
