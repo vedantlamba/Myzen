@@ -1,14 +1,16 @@
 "use client";
 import React, { useEffect, useState, createContext } from "react";
-import {
-  IconArrowNarrowLeft,
-  IconArrowNarrowRight,
-  IconX,
-} from "@tabler/icons-react";
+// import {
+//   IconArrowNarrowLeft,
+//   IconArrowNarrowRight,
+//   IconX,
+// } from "@tabler/icons-react";
+
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 import Image, { ImageProps } from "next/image";
 import { Button } from "./button";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 
 interface CarouselProps {
   items: React.ReactElement[];
@@ -132,10 +134,10 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
         </div>
         <div className="mr-10 flex justify-end gap-2">
           <Button onClick={scrollLeft} disabled={!canScrollLeft}>
-            <IconArrowNarrowLeft className="h-6 w-6 text-gray-500" />
+            <ArrowLeft className="rounded-full h-6 w-6 text-white cursor-pointer" />
           </Button>
           <Button onClick={scrollRight} disabled={!canScrollRight}>
-            <IconArrowNarrowRight className="h-6 w-6 text-gray-500" />
+            <ArrowRight className="rounded-full h-6 w-6 text-white cursor-pointer" />
           </Button>
         </div>
       </div>
