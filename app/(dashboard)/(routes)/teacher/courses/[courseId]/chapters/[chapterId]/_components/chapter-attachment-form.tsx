@@ -115,7 +115,7 @@ export const ChapterAttachmentForm = ({
                     {attachment.name}
                   </p>
                   {deletingId === attachment.id && (
-                    <div>
+                    <div className="h-full flex justify-center items-center px-3">
                       <ClipLoader size={15} />
                     </div>
                   )}

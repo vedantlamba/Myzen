@@ -14,6 +14,7 @@ import { ImageForm } from "./_components/image-form";
 import { CategoryForm } from "./_components/category-form";
 import { PriceForm } from "./_components/price-form";
 import { ChaptersForm } from "./_components/chapters-form";
+import { CourseActions } from "./_components/course-actions";
 
 const CourseIdPage = async ({
   params,
@@ -30,7 +31,7 @@ const CourseIdPage = async ({
   const course = await db.course.findUnique({
     where: {
       id: courseId,
-      userId
+      userId,
     },
     include: {
       chapters: {
@@ -68,7 +69,7 @@ const CourseIdPage = async ({
   const completedFields = requiredFields.filter(Boolean).length;
 
   const completionText = `(${completedFields}/${totalFields})`;
-
+  const isComplete = requiredFields.every(Boolean);
   return (
     <div>
       <div className="p-6 w-full h-full">
@@ -81,11 +82,11 @@ const CourseIdPage = async ({
               Complete all required fields {completionText}
             </span>
             <div className="flex flex-col md:flex-row gap-2 md:items-center">
-              {/* <CourseActions
+              <CourseActions
                 disabled={!isComplete}
                 courseId={courseId}
                 isPublished={course.isPublished}
-              /> */}
+              />
               <p className="text-red-500 text-[10px] md:px-4 md:text-sm">
                 {!course.isPublished
                   ? "This course is currently unpublished"

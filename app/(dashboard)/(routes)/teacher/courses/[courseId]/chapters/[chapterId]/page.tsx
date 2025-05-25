@@ -9,6 +9,7 @@ import { ChapterDescriptionForm } from "./_components/chapter-description-form";
 import { ChapterAccessForm } from "./_components/chapter-access-form";
 import { ChapterVideoForm } from "./_components/chapter-video-form";
 import { ChapterAttachmentForm } from "./_components/chapter-attachment-form";
+import { ChapterActions } from "./_components/chapter-actions";
 
 const ChapterIdPage = async ({
   params,
@@ -66,12 +67,12 @@ const ChapterIdPage = async ({
                   Complete all fields {completionText}
                 </span>
                 <div className="flex flex-col md:flex-row gap-2 md:items-center">
-                  {/* <ChapterActions
+                  <ChapterActions
                     disabled={!isComplete}
                     courseId={courseId}
                     chapterId={chapterId}
                     isPublished={chapter.isPublished}
-                  /> */}
+                  />
                   <p className="text-red-500 text-[10px] md:px-4 md:text-sm">
                     {!chapter.isPublished
                       ? "This chapter is currently unpublished"

@@ -7,6 +7,88 @@ const mux = new Mux({
   tokenSecret: process.env.MUX_TOKEN_SECRET,
 });
 
+export async function DELETE(
+  req: Request,
+  { params }: { params: Promise<{ courseId: string; chapterId: string }> }
+) {
+  try {
+    const chapterId = (await params).chapterId;
+    const courseId = (await params).courseId;
+    const session = await auth();
+    const userId = session?.user?.id;
+    if (!userId) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+
+    const courseOwner = await db.course.findUnique({
+      where: {
+        id: courseId,
+        userId: userId,
+      },
+    });
+
+    if (!courseOwner) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+
+    const chapter = await db.chapter.findUnique({
+      where: {
+        id: chapterId,
+        courseId: courseId,
+      },
+    });
+
+    if (!chapter) {
+      return new NextResponse("Not Found", { status: 404 });
+    }
+
+    if (chapter.videoUrl) {
+      const existingMuxData = await db.muxData.findFirst({
+        where: {
+          chapterId: chapterId,
+        },
+      });
+
+      if (existingMuxData) {
+        await mux.video.assets.delete(existingMuxData.assetId);
+        await db.muxData.delete({
+          where: {
+            id: existingMuxData.id,
+          },
+        });
+      }
+      const deletedChapter = await db.chapter.delete({
+        where: {
+          id: chapterId,
+        },
+      });
+
+      const publishedChapterInCourse = await db.chapter.findMany({
+        where: {
+          courseId: courseId,
+          isPublished: true,
+        },
+      });
+
+      if (!publishedChapterInCourse.length) {
+        await db.course.update({
+          where: {
+            id: courseId,
+          },
+          data: {
+            isPublished: false,
+          },
+        });
+      }
+
+      return NextResponse.json(deletedChapter);
+    }
+  } catch (error) {
+    console.log("CHAPTER_DELETE_ERROR:", error);
+    return new NextResponse("Chapter Deletion Internal Error", { status: 500 });
+  }
+}
+
 export async function PATCH(
   req: Request,
   { params }: { params: Promise<{ courseId: string; chapterId: string }> }
