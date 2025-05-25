@@ -10,8 +10,9 @@ const CourseLayout = async ({
   params,
 }: {
   children: React.ReactNode;
-  params: { courseId: string };
+  params: Promise<{ courseId: string }>;
 }) => {
+  const courseId = (await params).courseId;
   const session = await auth();
   const userId = session?.user?.id;
   if (!userId) {
@@ -20,7 +21,7 @@ const CourseLayout = async ({
 
   const course = await db.course.findUnique({
     where: {
-      id: params.courseId,
+      id: courseId,
       userId,
     },
     include: {

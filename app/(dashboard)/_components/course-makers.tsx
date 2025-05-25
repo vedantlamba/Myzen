@@ -1,55 +1,59 @@
 import { Button } from "@/components/ui/button";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+// import {
+//   Carousel,
+//   CarouselContent,
+//   CarouselItem,
+//   CarouselNext,
+//   CarouselPrevious,
+// } from "@/components/ui/carousel";
 import Image from "next/image";
 import Link from "next/link";
+import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 
 const personImages = [
   {
-    image: "/per-15.jpeg",
+    src: "/per-15.jpeg",
     name: "Lorenzo Bellini",
-    course: "The Art of Scent Creation",
+    title: "The Art of Scent Creation",
     category: "Perfumery",
   },
   {
-    image: "/per-14.jpeg",
+    src: "/per-14.jpeg",
     name: "Élodie Marceau",
-    course: "Parisian Fashion & Style",
+    title: "Parisian Fashion & Style",
     category: "Fashion",
   },
   {
-    image: "/per-13.jpeg",
+    src: "/per-13.jpeg",
     name: "Liang Wei",
-    course: "Mastering Traditional Chinese Instruments",
+    title: "Mastering Traditional Chinese Instruments",
     category: "Music",
   },
   {
-    image: "/per-11.jpeg",
+    src: "/per-11.jpeg",
     name: "James Carter",
-    course: "Business Strategy & Leadership",
+    title: "Business Strategy & Leadership",
     category: "Business",
   },
   {
-    image: "/per-8.jpeg",
+    src: "/per-8.jpeg",
     name: "Takeshi Yamamoto",
-    course: "Martial Arts: The Way of the Warrior",
+    title: "Martial Arts: The Way of the Warrior",
     category: "Martial Arts",
   },
   {
-    image: "/per-5.jpeg",
+    src: "/per-5.jpeg",
     name: "Matteo Romano",
-    course: "Italian Cooking: Soul of the Kitchen",
+    title: "Italian Cooking: Soul of the Kitchen",
     category: "Culinary",
   },
 ];
 
 export const CourseMakers = () => {
-  const desiredSize = 450; // Define the desired width and height
+  // const desiredSize = 450;
+  const cards = personImages.map((card, index) => (
+    <Card key={card.src} card={card} index={index} />
+  ));
 
   return (
     <div className="w-full md:mt-32 mt-10 flex flex-col gap-y-8 pb-10">
@@ -58,7 +62,10 @@ export const CourseMakers = () => {
           A spark of learning, right when you need it.
         </h1>
       </div>
-      <div className="h-auto relative">
+      <div className="w-full px-3 overflow-y-hidden">
+        <Carousel items={cards} />
+      </div>
+      {/* <div className="h-auto relative">
         <div className="max-w-7xl mx-auto">
           <Carousel>
             <CarouselContent>
@@ -76,7 +83,7 @@ export const CourseMakers = () => {
                     }}
                     className="md:rounded-md"
                   >
-                    {/* Image */}
+
                     <Image
                       src={person.image}
                       alt={`person ${index}`}
@@ -85,7 +92,7 @@ export const CourseMakers = () => {
                       className="md:rounded-md"
                     />
 
-                    {/* Gradient + Text */}
+
                     <div className="absolute bottom-0 w-full h-1/3 bg-gradient-to-t from-black via-black/80 to-transparent flex flex-col justify-end items-center text-white p-4">
                       <h2 className="text-lg font-semibold">{person.name}</h2>
                       <p className="text-sm opacity-90">{person.course}</p>
@@ -104,14 +111,14 @@ export const CourseMakers = () => {
             </div>
           </Carousel>
         </div>
-      </div>
-      <div className="flex justify-center items-center mt-20">
+      </div> */}
+      {/* <div className="flex justify-center items-center">
         <Link href="/search">
           <Button variant="browse" className="px-6 cursor-pointer">
             Browse Our Courses
           </Button>
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 };
