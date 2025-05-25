@@ -129,7 +129,7 @@
   height: 5px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: black;
+  background-color: gainsboro;
   border-radius: 9999px;
   cursor: pointer;
 }

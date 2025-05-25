@@ -20,7 +20,8 @@ const buttonVariants = cva(
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
-        browse: "bg-[linear-gradient(to_top,_#00796B,_#26A69A)] text-white hover:bg-[linear-gradient(to_top,_#00695C,_#239C91)]"
+        browse: "bg-[linear-gradient(to_top,_#00796B,_#26A69A)] text-white hover:bg-[linear-gradient(to_top,_#00695C,_#239C91)]",
+        custom: "bg-[var(--my-bg-green)] text-[var(--my-text-green)] hover:bg-[var(--hover-green)] transition"
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

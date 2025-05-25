@@ -41,7 +41,7 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
     <>
       <div className="w-full h-full">
         {/* Search Bar - only visible on mobile */}
-        <div className="block md:hidden px-4 pt-4 mt-4">
+        <div className="mx-auto md:flex md:justify-center md:items-center px-4 pt-4 mt-4">
           <Suspense fallback={<div className="h-10 w-full bg-gray-200 rounded animate-pulse" />}>
             <SearchInput />
           </Suspense>
