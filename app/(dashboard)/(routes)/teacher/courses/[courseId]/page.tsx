@@ -15,6 +15,8 @@ import { CategoryForm } from "./_components/category-form";
 import { PriceForm } from "./_components/price-form";
 import { ChaptersForm } from "./_components/chapters-form";
 import { CourseActions } from "./_components/course-actions";
+import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
 
 const CourseIdPage = async ({
   params,
@@ -87,11 +89,15 @@ const CourseIdPage = async ({
                 courseId={courseId}
                 isPublished={course.isPublished}
               />
-              <p className="text-red-500 text-[10px] md:px-4 md:text-sm">
-                {!course.isPublished
-                  ? "This course is currently unpublished"
-                  : ""}
-              </p>
+              {!course.isPublished ? (
+                <p className="text-red-500 text-[10px] md:px-4 md:text-sm">
+                  This course is currently unpublished
+                </p>
+              ) : (
+                <div>
+                  <Badge className="bg-emerald-500 text-white px-4">Live</Badge>
+                </div>
+              )}
             </div>
           </div>
         </div>

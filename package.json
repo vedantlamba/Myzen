@@ -38,6 +38,7 @@
     "next": "15.3.2",
     "next-auth": "^5.0.0-beta.28",
     "react": "^19.0.0",
+    "react-confetti": "^6.4.0",
     "react-dom": "^19.0.0",
     "react-dropzone": "^14.3.8",
     "react-hook-form": "^7.56.4",
@@ -48,7 +49,8 @@
     "react-spinners": "^0.17.0",
     "tailwind-merge": "^3.3.0",
     "uploadthing": "^7.7.2",
-    "zod": "^3.25.3"
+    "zod": "^3.25.3",
+    "zustand": "^5.0.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

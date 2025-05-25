@@ -7,7 +7,7 @@ import {
 } from "@/components/providers/toast-providers";
 
 import { Button } from "@/components/ui/button";
-// import { useConfetti } from "@/hooks/use-confetti";
+import { useConfetti } from "@/hooks/use-confetti";
 import axios from "axios";
 import { Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -26,7 +26,7 @@ export const CourseActions = ({
 }: CourseActionProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  // const confetti = useConfetti();
+  const confetti = useConfetti();
 
   const onClick = async () => {
     try {
@@ -37,7 +37,7 @@ export const CourseActions = ({
       } else {
         await axios.patch(`/api/courses/${courseId}/publish`);
         SuccessToaster({ message: "Course published!" });
-        // confetti.onOpen();
+        confetti.onOpen();
       }
 
       router.refresh();

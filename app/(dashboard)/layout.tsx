@@ -1,11 +1,13 @@
 import { ToastProvider } from "@/components/providers/toast-providers";
 import { Navbar } from "./_components/navbar";
 import { Sidebar } from "./_components/sidebar";
+import { ConfettiProvider } from "@/components/providers/confetti-providers";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <div>
+        <ConfettiProvider />
         <ToastProvider />
       </div>
       <div className="h-screen ">
