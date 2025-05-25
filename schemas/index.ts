@@ -84,3 +84,9 @@ export const chapterTitleFormSchema = z.object({
     message: "Title is required!",
   }),
 });
+
+export const ChapterDesformSchema = z.object({
+  description: z.string().min(2, {
+    message: "Chapter Description is required!",
+  }),
+});
