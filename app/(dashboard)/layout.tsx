@@ -8,7 +8,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       <div>
         <ToastProvider />
       </div>
-      <div className="h-screen">
+      <div className="h-screen ">
         <div className="h-[80px] md:pl-56 fixed inset-0 w-full z-50">
           <Navbar />
         </div>

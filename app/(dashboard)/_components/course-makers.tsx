@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import {
   Carousel,
   CarouselContent,
@@ -6,6 +7,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Image from "next/image";
+import Link from "next/link";
 
 const personImages = [
   {
@@ -52,7 +54,7 @@ export const CourseMakers = () => {
   return (
     <div className="w-full md:mt-32 mt-10 flex flex-col gap-y-8 pb-10">
       <div className="max-w-5xl  mx-auto">
-        <h1 className="text-sm md:text-xl lg:text-4xl text-center font-light">
+        <h1 className="text-sm md:text-xl lg:text-4xl text-center font-light md:font-bold">
           A spark of learning, right when you need it.
         </h1>
       </div>
@@ -102,6 +104,13 @@ export const CourseMakers = () => {
             </div>
           </Carousel>
         </div>
+      </div>
+      <div className="flex justify-center items-center mt-20">
+        <Link href="/search">
+          <Button variant="browse" className="px-6 cursor-pointer">
+            Browse Our Courses
+          </Button>
+        </Link>
       </div>
     </div>
   );
