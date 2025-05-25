@@ -90,3 +90,7 @@ export const ChapterDesformSchema = z.object({
     message: "Chapter Description is required!",
   }),
 });
+
+export const chapterAccessformSchema = z.object({
+  isFree: z.boolean(),
+});

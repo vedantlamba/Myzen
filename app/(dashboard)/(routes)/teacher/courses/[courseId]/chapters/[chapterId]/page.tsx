@@ -6,6 +6,9 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { ChapterTitleForm } from "./_components/chapter-title-form";
 import { ChapterDescriptionForm } from "./_components/chapter-description-form";
+import { ChapterAccessForm } from "./_components/chapter-access-form";
+import { ChapterVideoForm } from "./_components/chapter-video-form";
+import { ChapterAttachmentForm } from "./_components/chapter-attachment-form";
 
 const ChapterIdPage = async ({
   params,
@@ -26,6 +29,7 @@ const ChapterIdPage = async ({
     },
     include: {
       muxData: true,
+      attachments: true
     },
   });
   if (!chapter) {
@@ -101,11 +105,11 @@ const ChapterIdPage = async ({
                 <IconBadge icon={Eye} />
                 <h2 className="text-lg font-medium">Access Settings</h2>
               </div>
-              {/* <ChapterAccessForm
+              <ChapterAccessForm
                 initialData={chapter}
                 courseId={courseId}
                 chapterId={chapterId}
-              /> */}
+              />
             </div>
           </div>
           <div>
@@ -113,11 +117,16 @@ const ChapterIdPage = async ({
               <IconBadge icon={Video} />
               <h2 className="text-lg font-medium">Add a video</h2>
             </div>
-            {/* <ChapterVideoForm
+            <ChapterVideoForm
               initialData={chapter}
               courseId={courseId}
               chapterId={chapterId}
-            /> */}
+            />
+            <ChapterAttachmentForm
+              initialData={chapter}
+              courseId={courseId}
+              chapterId={chapterId}
+            />
           </div>
         </div>
       </div>
