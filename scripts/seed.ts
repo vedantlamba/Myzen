@@ -13,12 +13,17 @@ async function main() {
         { name: "Personal Development" },
         { name: "Science & Engineering" },
         { name: "Health & Fitness" },
+        { name: "Fashion" },
+        { name: "Cooking" },
+        { name: "Anime Drawing" },
+        { name: "Music" },
       ],
+      skipDuplicates: true, 
     });
 
-    console.log("Successful seeding!");
+    console.log("✅ Categories seeded successfully!");
   } catch (error) {
-    console.log("[SEEDING_ERROR]", error);
+    console.error("[SEEDING_ERROR]", error);
   } finally {
     await database.$disconnect();
   }
