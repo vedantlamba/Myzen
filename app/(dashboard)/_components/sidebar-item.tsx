@@ -9,9 +9,15 @@ interface SidebarItemProps {
   icon: LucideIcon;
   href: string;
   label: string;
+  onRouteClick?: () => void;
 }
 
-export const SidebarItem = ({ icon: Icon, href, label }: SidebarItemProps) => {
+export const SidebarItem = ({
+  icon: Icon,
+  href,
+  label,
+  onRouteClick,
+}: SidebarItemProps) => {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -21,6 +27,7 @@ export const SidebarItem = ({ icon: Icon, href, label }: SidebarItemProps) => {
     pathname?.startsWith(`${href}/`);
 
   const onClick = () => {
+    onRouteClick?.();
     router.push(href);
   };
 
@@ -34,10 +41,13 @@ export const SidebarItem = ({ icon: Icon, href, label }: SidebarItemProps) => {
         isActive && "bg-accent"
       )}
     >
-      <div className={cn("flex w-full items-center gap-x-2 py-4 font-light",isActive && "font-medium")}>
-        <Icon
-          size={22}
-        />
+      <div
+        className={cn(
+          "flex w-full items-center gap-x-2 py-4 font-light",
+          isActive && "font-medium"
+        )}
+      >
+        <Icon size={22} />
         {label}
       </div>
     </Button>

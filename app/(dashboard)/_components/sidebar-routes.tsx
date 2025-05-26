@@ -30,7 +30,11 @@ const TeacherRoutes = [
   },
 ];
 
-export const SidebarRoutes = () => {
+interface SidebarRoutesProps {
+  onRouteClick?: () => void;
+}
+
+export const SidebarRoutes = ({ onRouteClick }: SidebarRoutesProps) => {
   const pathname = usePathname();
   const routes = pathname.includes("/teacher") ? TeacherRoutes : GuestRoutes;
 
@@ -42,6 +46,7 @@ export const SidebarRoutes = () => {
           icon={route.icon}
           href={route.href}
           label={route.label}
+          onRouteClick={onRouteClick}
         />
       ))}
     </div>
