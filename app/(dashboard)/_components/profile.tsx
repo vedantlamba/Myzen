@@ -1,4 +1,6 @@
-import { signOut } from "next-auth/react";
+"use client";
+// import { logout } from "@/actions/logout";
+// import { signOut } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   NavigationMenu,
@@ -9,6 +11,14 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { LogOut, Settings, User, UserPen } from "lucide-react";
+import { signOut } from "next-auth/react";
+
+const onClick = () => {
+  signOut({
+    redirect: true,
+    callbackUrl: "/auth/login",
+  });
+};
 
 export const Profile = () => {
   return (
@@ -41,7 +51,7 @@ export const Profile = () => {
               <NavigationMenuLink href="/auth/login">
                 <button
                   className="flex flex-row justify-center items-center gap-2"
-                  onClick={() => signOut({ callbackUrl: "/auth/login" })}
+                  onClick={onClick}
                 >
                   <LogOut /> Logout
                 </button>

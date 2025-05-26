@@ -8,6 +8,10 @@ export const LoginSchema = z.object({
   code: z.optional(z.string()),
 });
 
+export const ResetPasswordSchema = z.object({
+  password: z.string().min(4, "Password must be of 3 letters."),
+});
+
 export const RegisterSchema = z.object({
   name: z.string().min(2, "Name Is Required"),
   email: z.string().email({
@@ -16,15 +20,14 @@ export const RegisterSchema = z.object({
   password: z.string().min(4, "Password must be of 3 letters."),
 });
 
-export const ResetPasswordSchema = z.object({
-  email: z.string().email({
-    message: "Email is required!",
-  }),
-});
-export const ResetPasswordEmailSchema = z.object({
-  password: z.string().min(3, "Password must be of 3 letters."),
-});
-
+// export const ResetPasswordSchema = z.object({
+//   email: z.string().email({
+//     message: "Email is required!",
+//   }),
+// });
+// export const ResetPasswordEmailSchema = z.object({
+//   password: z.string().min(3, "Password must be of 3 letters."),
+// });
 
 // FORM
 
@@ -33,7 +36,6 @@ export const formSchema = z.object({
     message: "Course name is required!",
   }),
 });
-
 
 // Course Forms
 
@@ -61,11 +63,9 @@ export const catFormSchema = z.object({
   }),
 });
 
-
 export const priceFormSchema = z.object({
   price: z.coerce.number(),
 });
-
 
 export const attachmentFormSchema = z.object({
   url: z.string().min(1),
