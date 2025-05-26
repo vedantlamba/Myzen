@@ -57,10 +57,17 @@ export const CourseMakers = () => {
 
   return (
     <div className="w-full md:mt-32 mt-10 flex flex-col gap-y-8 pb-10">
-      <div className="max-w-5xl  mx-auto">
-        <h1 className="text-sm md:text-xl lg:text-4xl text-center font-light md:font-bold">
-          A spark of learning, right when you need it.
+      <div className="max-w-5xl mx-auto py-2 md:py-12">
+        <h1
+          className="text-lg md:text-2xl lg:text-5xl text-center font-semibold text-gray-800 dark:text-gray-100 tracking-tight leading-tight"
+          style={{
+            letterSpacing: "-0.02em", 
+            fontWeight: 600,
+          }}
+        >
+          Craft Your Future, One Course at a Time.
         </h1>
+        <p className="text-center pt-2 text-gray-600 text-sm md:text-lg tracking-tight leading-tight">Mentored by industry-leading professionals</p>
       </div>
       <div className="w-full px-3 overflow-y-hidden">
         <Carousel items={cards} />
