@@ -1,15 +1,15 @@
 "use client";
-// import { signIn } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Button } from "../ui/button";
-// import { DEFAULT_LOGIN_REDIRECT } from "@/route";
+import { DEFAULT_LOGIN_REDIRECT } from "@/route";
 
 export function Social() {
-  // const onClick = (provider: "google" | "github") => {
-  //   signIn(provider, {
-  //     callbackUrl: DEFAULT_LOGIN_REDIRECT,
-  //   });
-  // };
+  const onClick = (provider: "google" | "github") => {
+    signIn(provider, {
+      callbackUrl: DEFAULT_LOGIN_REDIRECT,
+    });
+  };
 
   return (
     <div className="flex items-center justify-center w-full gap-x-2">
@@ -17,7 +17,7 @@ export function Social() {
         size="lg"
         variant="outline"
         className="w-1/2 cursor-pointer"
-        // onClick={() => onClick("google")}
+        onClick={() => onClick("google")}
       >
         <FaGoogle className="text-[var(--darker)]" />
       </Button>
@@ -25,7 +25,7 @@ export function Social() {
         size="lg"
         className="w-1/2 cursor-pointer"
         variant="outline"
-        // onClick={() => onClick("github")}
+        onClick={() => onClick("github")}
       >
         <FaGithub className="text-[var(--darker)]" />
       </Button>

@@ -38,12 +38,13 @@ export const Profile = () => {
               >
                 <Settings /> Settings
               </NavigationMenuLink>
-              <NavigationMenuLink
-                onClick={() => signOut({ callbackUrl: "/auth/login" })}
-                href="/auth/login"
-                className="flex flex-row justify-center items-center gap-2"
-              >
-                <LogOut /> Logout
+              <NavigationMenuLink href="/auth/login">
+                <button
+                  className="flex flex-row justify-center items-center gap-2"
+                  onClick={() => signOut({ callbackUrl: "/auth/login" })}
+                >
+                  <LogOut /> Logout
+                </button>
               </NavigationMenuLink>
             </NavigationMenuContent>
           </NavigationMenuItem>

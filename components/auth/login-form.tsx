@@ -22,6 +22,7 @@ import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { login } from "@/actions/login";
 import { DEFAULT_LOGIN_REDIRECT } from "@/route";
+import Image from "next/image";
 
 const LoginForm = () => {
   const [isPending, startTransition] = useTransition();
@@ -59,7 +60,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen bg-accent">
+    <div className="bg-accent flex flex-col justify-center overflow-y-hidden items-center h-screen">
       <CardWrapper
         backBtnHref="/auth/register"
         backBtnLabel="Create an account"
@@ -109,10 +110,7 @@ const LoginForm = () => {
                   <Link href="/auth/reset">Forget password</Link>
                 </button>
               </div>
-              <Button
-                disabled={isPending}
-                className="cursor-pointer"
-              >
+              <Button disabled={isPending} className="cursor-pointer">
                 Sign In
               </Button>
 

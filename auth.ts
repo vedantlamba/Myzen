@@ -6,6 +6,13 @@ import { db } from "./lib/db";
 export const { auth, handlers, signIn, signOut } = NextAuth({
   ...authConfig,
   callbacks: {
+    async signIn({ account }) {
+      // For Oauth providers like google and github
+      if (account?.provider !== "credentials") {
+        return true;
+      }
+      return true;
+    },
     async session({ token, session }) {
       // console.log({ sessionToken: session });
       if (token.sub && session.user) {

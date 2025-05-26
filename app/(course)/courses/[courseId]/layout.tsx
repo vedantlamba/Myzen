@@ -19,10 +19,13 @@ const CourseLayout = async ({
     return redirect("/");
   }
 
-  const course = await db.course.findUnique({
+  const course = await db.course.findFirst({
     where: {
       id: courseId,
-      userId,
+      OR: [
+        { userId }, 
+        { isPublished: true }, 
+      ],
     },
     include: {
       chapters: {
