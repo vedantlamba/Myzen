@@ -1,3 +1,4 @@
+import { signOut } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   NavigationMenu,
@@ -26,18 +27,20 @@ export const Profile = () => {
             <NavigationMenuContent className="px-6 py-6 text-center">
               <NavigationMenuLink
                 href="/profile"
-                className="flex flex-row justify-center items-center gap-2"
+                className="flex flex-row justify-center items-center gap-2  pointer-events-none opacity-50"
               >
                 <UserPen /> Profile
               </NavigationMenuLink>
+
               <NavigationMenuLink
                 href="/settings"
-                className="flex flex-row justify-center items-center gap-2"
+                className="flex flex-row justify-center items-center gap-2 pointer-events-none opacity-50"
               >
                 <Settings /> Settings
               </NavigationMenuLink>
               <NavigationMenuLink
-                href="/logout"
+                onClick={() => signOut({ callbackUrl: "/auth/login" })}
+                href="/auth/login"
                 className="flex flex-row justify-center items-center gap-2"
               >
                 <LogOut /> Logout
