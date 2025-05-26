@@ -68,6 +68,7 @@ model Course {
   id String @id @default(uuid())
   userId String
   title String
+  author String? @db.Text
   description String? @db.Text
   imageUrl String? @db.Text
   chapters    Chapter[]

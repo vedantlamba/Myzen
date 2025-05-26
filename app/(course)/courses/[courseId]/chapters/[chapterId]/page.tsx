@@ -6,8 +6,9 @@ import { VideoPlayer } from "./_components/video-player";
 import { CourseEnrollBtn } from "./_components/course-enroll-btn";
 import { Separator } from "@/components/ui/separator";
 import { Preview } from "@/components/preview";
-import { File } from "lucide-react";
+import { File, User } from "lucide-react";
 import { CourseProgressBtn } from "./_components/course-progress-btn";
+import { db } from "@/lib/db";
 
 const ChapterIdPage = async ({
   params,
@@ -19,6 +20,15 @@ const ChapterIdPage = async ({
   const session = await auth();
   const userId = await session?.user?.id;
   if (!userId) return redirect("/");
+
+  const courseAuthor = await db.course.findUnique({
+    where: {
+      id: courseId,
+    },
+    select: {
+      author: true,
+    },
+  });
 
   const {
     chapter,
@@ -83,9 +93,16 @@ const ChapterIdPage = async ({
           <div>
             <Preview value={chapter.description!} />
           </div>
+          <Separator />
+
+          <div className="w-[90%] mx-auto flex flex-row gap-1  justify-end items-center mt-2">
+            <User size={16} color="gray" strokeWidth={2.25} />
+            <h2 className="text-sm font-light text-muted-foreground">
+              {courseAuthor?.author}
+            </h2>
+          </div>
           {!!attachments.length && (
             <>
-              <Separator />
               <div className="p-4">
                 {attachments.map((attachment) => (
                   <a

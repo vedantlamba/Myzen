@@ -71,6 +71,12 @@ export const attachmentFormSchema = z.object({
   url: z.string().min(1),
 });
 
+export const authorformSchema = z.object({
+  author: z.string().min(2, {
+    message: "Your name is required!",
+  }),
+});
+
 // Chapter Forms
 
 export const ChaptersFormSchema = z.object({

@@ -17,6 +17,7 @@ import { ChaptersForm } from "./_components/chapters-form";
 import { CourseActions } from "./_components/course-actions";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
+import { AuthorForm } from "./_components/author-form";
 
 const CourseIdPage = async ({
   params,
@@ -64,6 +65,7 @@ const CourseIdPage = async ({
     course.imageUrl,
     course.price,
     course.categoryId,
+    course.author,
     course.chapters.some((chapter) => chapter.isPublished),
   ];
 
@@ -141,6 +143,7 @@ const CourseIdPage = async ({
                   value: category.id,
                 }))}
               />
+              <AuthorForm initialData={course} courseId={course.id} />
             </div>
           </div>
           <div></div>
