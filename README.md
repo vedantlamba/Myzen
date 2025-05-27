@@ -46,3 +46,5 @@ Myzen is currently in demo mode. You can try purchasing a course using the Strip
 To create, publish, or access premium courses:
 
 🧠 You must be signed in with an account.
+
+![Live Screenshot](https://es0e4shkcf.ufs.sh/f/mXuxRjIWaUY37YLSOLCcOrQZu2VJ8tMKpshnYdfCPyNAUz7S)
