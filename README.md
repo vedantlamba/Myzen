@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🐺 Myzen — Fullstack LMS Platform
 
-## Getting Started
+![Live Screenshot](https://es0e4shkcf.ufs.sh/f/mXuxRjIWaUY3g38ZPjsi4LxOTUy93DKRYQXZlVP8j6GrvWBn)
 
-First, run the development server:
+Myzen is a full-featured Learning Management System (LMS) built with Next.js 14, TypeScript, Prisma, Stripe, and Mux. It enables instructors to create, organize, and sell video courses, while providing learners with a seamless experience.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🚀 Features
+📚 Course Builder with drag-and-drop chapters (using [https://github.com/hello-pangea/dnd])
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🎥 Video Upload & Streaming with Uploadthing + Mux
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+💳 Payments using Stripe (supports free & paid chapters)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🔒 Authentication via NextAuth
 
-## Learn More
+📁 Attachments per chapter
 
-To learn more about Next.js, take a look at the following resources:
+🛒 Browse & Buy experience with Stripe Checkout
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+✅ Chapter Publishing Validation (can't publish course without at least 1 published chapter)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+🌐 Deployed on Vercel
 
-## Deploy on Vercel
+🔧 Tech Stack
+Tech	Usage
+Next.js 14 App Router	Fullstack React Framework
+TypeScript	Type Safety
+TailwindCSS	Utility-first Styling
+Prisma	ORM + PostgreSQL Database
+Mux	Video Streaming
+Uploadthing	File Upload Handling
+Stripe	Payments
+NextAuth	Auth Sessions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🛍️ Demo Buying Experience
+Myzen is currently in demo mode. You can try purchasing a course using the Stripe test environment.
+
+💳 Test Card: 4242 4242 4242 4242
+📅 Expiry Date: Any future date (e.g., 12/34)
+🔒 CVC: Any 3 digits (e.g., 123)
+🏡 ZIP Code: Any 5-digit number (e.g., 12345)
+💡 Note: This is 100% safe and uses Stripe test mode — no real money involved.
+
+🔐 Authentication Required
+To create, publish, or access premium courses:
+
+🧠 You must be signed in with an account.
