@@ -1,7 +1,6 @@
 export const PublicRoutes = [
   "/",
   "/api/webhook",
-  "/search",
   
 ];
 export const authRoutes = ["/auth/login", "/auth/register"];
