@@ -5,6 +5,9 @@ import { redirect } from "next/navigation";
 import CourseNavbar from "./_components/course-navbar";
 import CourseSidebar from "./_components/course-sidebar";
 
+
+
+
 const CourseLayout = async ({
   children,
   params,

@@ -1,11 +1,14 @@
+"use client";
 import { ToastProvider } from "@/components/providers/toast-providers";
 import { Navbar } from "./_components/navbar";
 import { Sidebar } from "./_components/sidebar";
 import { ConfettiProvider } from "@/components/providers/confetti-providers";
+import { Loading } from "./_components/loader";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
+
       <div>
         <ConfettiProvider />
         <ToastProvider />

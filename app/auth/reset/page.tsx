@@ -1,6 +1,15 @@
+"use client"
 import ResetPasswordForm from "@/components/auth/reset-password-form";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 const ResetPasswordPage = () => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/auth/login");
+  };
+
   return (
     <div className="max-w-md mx-auto p-4">
       <div className="mb-2 rounded border border-yellow-400 bg-yellow-50 p-4 text-yellow-800">
@@ -26,6 +35,11 @@ const ResetPasswordPage = () => {
 
       <div className="pointer-events-none opacity-50">
         <ResetPasswordForm />
+      </div>
+      <div className="flex justify-center items-center py-6">
+        <Button variant="link" className="cursor-pointer" onClick={handleClick}>
+          Go Back
+        </Button>
       </div>
     </div>
   );
